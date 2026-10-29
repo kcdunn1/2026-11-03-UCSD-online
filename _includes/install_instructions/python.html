@@ -36,202 +36,273 @@ https://jupyter-notebook.readthedocs.io/en/stable/notebook.html#browser-compatib
   <!-- and --> or  {% comment %} and {% endcomment %}
   if you do not plan to use Jupyter Notebook environment.
   {% endcomment %}
-  <p>
-    We will teach Python using the <a href="https://jupyter.org/">Jupyter Notebook</a>,
-    a programming environment that runs in a web browser (Jupyter Notebook will be installed by Miniforge). For this to work you will need a reasonably
-    up-to-date browser. The current versions of the Chrome, Safari and
-    Firefox browsers are all
-    <a href="https://jupyter-notebook.readthedocs.io/en/stable/notebook.html#browser-compatibility">supported</a>
-    (some older browsers, including Internet Explorer version 9
-    and below, are not).
-  </p>
+ <section id="python-setup">
+  <h2>Python Setup: Anaconda (Python)</h2>
+  
+  <p>Please finish these steps before our first Python class. If you encounter issues, please come early to the first day (8:00 AM) and we will help you troubleshoot. You will install Anaconda (Python plus many useful tools), create our class environment from the file <code>Carpentries.yml</code>, and open JupyterLab, where we will write all our code.</p>
+  
+  <p>Set aside about <strong>45 minutes</strong> and use a good internet connection. You do not need any programming experience. If anything goes wrong, take a screenshot of the whole window and send it to your instructor.</p>
 
-  <div>
-    <div class="tab-content">
-      <article role="tabpanel" class="tab-pane active" id="python-windows">
-        <div class="card w-100 text-bg-warning" style="width: 18rem; margin-bottom: 10px;">
-        <details class="mb-0">
-            <summary class="card-header w-100 rounded-0" role="button">
-            Challenges with OneDrive
-            </summary>
-            <div class="card-body bg-light border-top">
-            <div class="card-text">
-                <p>
-                OneDrive is used by many institutions to sync your user folder (<code>C:\Users\[your-username]\</code>) within an organisation.
-                It may cause issues with the installation of the Carpentries environment.<br/>
-                If you have OneDrive set up, please ensure that you can access your <code>C:\Users\[your-username]\Downloads</code> folder:
-                </p>
-                <p>
-                  <ul>
-                    <li>Open File Explorer</li>
-                    <li>Right click on the "Downloads" folder in the left-hand navigation pane</li>
-                    <li>Select "Properties"</li>
-                    <li>In the "Location" tab, ensure that the path is set to <code>C:\Users\[your-username]\Downloads</code></li>
-                    <img src="assets/img/onedrive_downloads_location.png" alt="OneDrive Downloads Location">
-                  </ul>
-                </p>
-                <strong>If you encounter problems, please contact your IT support team and workshop organisers for assistance before the workshop.</strong>
-            </div>
-            </div>
-        </details>
-        </div>
+  <h3>Before You Start</h3>
+  <p>You need at least <strong>5 GB of free disk space</strong>, an internet connection, and one of the computers below. You do not need administrator rights.</p>
 
-        <ol>
-          <li>Open <a href="https://conda-forge.org/download/">https://conda-forge.org/download/</a> with your web browser.</li>
-          <li>Download the Miniforge for Windows installer</li>
-          <li>Double click on the downloaded file (Something like, <code>Minforge3-Windows-x86_64.exe</code>)</li>
-          <ul>
-            <li>If you get a "Windows protected your PC" pop-up from Microsoft Defender SmartScreen, click on "More info" and select "Run anyway"</li>
-          </ul>
-          <li>Follow through the installer using all of the defaults for installation <em>except</em> make sure to check <strong>Add Miniforge3 to my PATH environment variable</strong>.</li>
-	        {% comment %}
-	        <li>Search for the application "Miniforge Prompt", open it and run: <code>conda install jupyter</code> and click <kbd>Enter</kbd> when asked for confirmation.</li>
-	            if we want to add an icon, it can be done with:
-	            https://medium.com/@kostal91/create-a-desktop-shortcut-for-jupyterlab-on-windows-9fcabcfa0d3f - easier and more convenient using %userprofile% variable rather than users\%username%
-	            and need to update miniconda for miniforge
-	            Also, the https://pypi.org/project/start-jupyter-cm/ could be helpful.
-	        {% endcomment %}
-          <li>Then:
-            <ul>
-              <li><strong>EITHER</strong>:
-                <ul>
-                  <li>Right click the following link and click "Save link as...": <a href="https://raw.githubusercontent.com/carpentries/workshop-template/refs/heads/gh-pages/data/carpentries_environment.yml">Carpentries environment file</a></li>
-                  <li>Save the file to your <code>C:\Users\[your-username]\Downloads</code> folder.</li>
-                  <li>
-                    Make sure that the filename is <code>carpentries_environment.yml</code> and the "Save as type" option is set to <code>YML file (*.yml)</code><br/>
-                    <em>The following steps requires using the Miniforge Prompt command line. If you aren't comfortable doing the installation yourself stop here and request help at the workshop</em>.
-                  </li>
-                </ul>
-              </li>
-              <li><strong>OR</strong>:
-                <ul>
-                  <li>Open Git Bash</li>
-                  <li><code>cd ~/Downloads</code></li>
-                  <li><code>curl -L -O https://raw.githubusercontent.com/carpentries/workshop-template/refs/heads/gh-pages/data/carpentries_environment.yml</code></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>Open your Start Menu from your taskbar, or use the <kbd>Win</kbd> Windows key.</li>
-          <li>Search for the application "Miniforge Prompt", and click the icon to open it.
-            <ul>
-              <li>Once open, ensure the prompt shows your <code>C:\Users\[your-username]</code> folder. If it does, continue to Step 8 below:<br/>
-                <img src="assets/img/miniforge_prompt.png" alt="Miniforge Prompt [your-username] as froggleston"><br/>
-                In this case, the prompt shows <code>C:\Users\froggleston</code>. Your username will be different!
-              </li>
-              <li>If it doesn't:
-                <ul>
-                    <li>Find your username by typing <code>whoami</code> and press <kbd>Enter</kbd></li>
-                    <li>Your username will be shown as <code>[machine-name]\[your-username]</code>. You only need the <code>[your-username]</code> part after the slash, i.e. <code>froggleston</code> in this example.</li>
-                    <li>Type <code>cd C:\Users\[your-username]</code> and press <kbd>Enter</kbd></li>
-                </ul>
-                <img src="assets/img/miniforge_prompt_whoami.png" alt="Miniforge Prompt whoami">
-                <ul>
-                    <li>Continue to Step 8 below</li>
-                </ul>
-                <li><strong>If you get stuck, please contact your workshop organisers to get assistance before the workshop starts.</strong></li>
-              </li>
-            </ul>
-          </li>
-          <li>In the Miniforge Prompt window, run the following commands:
-            <ul>
-              <li>Type <code>cd Downloads</code> and press <kbd>Enter</kbd></li>
-              <li>Type <code>conda env create -f carpentries_environment.yml</code> and press <kbd>Enter</kbd></li>
-            </ul>
-          </li>
-          <li>The installation may take a few minutes depending on your internet connection speed. Once complete, you can close the Miniforge Prompt window.</li>
-        </ol>
-      </article>
-      <article role="tabpanel" class="tab-pane" id="python-macos">
-        <ol>
-          <li>Open <a href="https://conda-forge.org/download/">https://conda-forge.org/download/</a> with your web browser.</li>
-          <li>Download the appropriate Miniforge installer for macOS<br>
-	          <em>The following steps require using the shell. If you aren't comfortable doing the installation yourself stop here and request help at the workshop</em>.
-	      </li>
-          <li>
-            Open a terminal window and navigate to the directory where the executable is downloaded (e.g., <code>cd ~/Downloads</code>).
-          </li>
-          <li>
-            Type <pre>bash Miniforge3-</pre> and then press <kbd>Tab</kbd> to autocomplete the full file name.
-            The name of file you just downloaded should appear.
-            Press <kbd>Enter</kbd> (or <kbd>Return</kbd> depending on your keyboard).
-          </li>
-          <li>
-            Follow the text-only prompts in the terminal. To move through the text, press <kbd>Spacebar</kbd>.
-            <ul>
-              <li>Type <code>yes</code> and press <kbd>Enter</kbd> (or <kbd>Return</kbd>) to approve the license.</li>
-              <li>Press <kbd>Enter</kbd> (or <kbd>Return</kbd>) to approve the default location for the files.</li>
-              <li>Type <code>yes</code> and press <kbd>Enter</kbd> (or <kbd>Return</kbd>) to prepend Miniforge to your <code>PATH</code> (this makes the Miniforge distribution the default Python).</li>
-            </ul>
-          </li>
-          <li>Then:
-            <ul>
-              <li><strong>EITHER</strong>:
-                <ul>
-                  <li>Right click the following link and click "Save link as...": <a href="https://raw.githubusercontent.com/carpentries/workshop-template/refs/heads/gh-pages/data/carpentries_environment.yml">Carpentries environment file</a></li>
-                  <li>Save the file to your <code>Downloads</code> folder.</li>
-                  <li>Make sure that the filename is <code>carpentries_environment.yml</code> and the "Save as type" is set to <code>YML file (*.yml)</code></li>
-                </ul>
-              </li>
-              <li><strong>OR </strong>:
-                <ul>
-                  <li>Open your `bash` terminal</li>
-                  <li><code>cd ~/Downloads</code></li>
-                  <li><code>curl -L -O https://raw.githubusercontent.com/carpentries/workshop-template/refs/heads/gh-pages/data/carpentries_environment.yml</code></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-  	      <li>In the terminal, run: <code>conda env create -f ~/Downloads/carpentries_environment.yml</code></li>
-          <li>Close the terminal window.</li>
-        </ol>
-      </article>
-      <article role="tabpanel" class="tab-pane" id="python-linux">
-        <ol>
-          <li>Open <a href="https://conda-forge.org/download/">https://conda-forge.org/download/</a> with your web browser.</li>
-          <li>Download the appropriate Miniforge installer for Linux<br>
-	          <em>The following steps require using the shell. If you aren't comfortable doing the installation yourself stop here and request help at the workshop</em>.
-	      </li>
-          <li>
-            Open a terminal window and navigate to the directory where the executable is downloaded (e.g., <code>cd ~/Downloads</code>).
-          </li>
-          <li>
-            Type <pre>bash Miniforge3-</pre> and then press <kbd>Tab</kbd> to autocomplete the full file name.
-            The name of file you just downloaded should appear.
-            Press <kbd>Enter</kbd> (or <kbd>Return</kbd> depending on your keyboard).
-          </li>
-          <li>
-            Follow the text-only prompts in the terminal.
-            To move through the text, press <kbd>Spacebar</kbd>.
-            <ul>
-              <li>Type <code>yes</code> and press <kbd>Enter</kbd> (or <kbd>Return</kbd>) to approve the license.</li>
-              <li>Press <kbd>Enter</kbd> (or <kbd>Return</kbd>) to approve the default location for the files.</li>
-              <li>Type <code>yes</code> and press <kbd>Enter</kbd> (or <kbd>Return</kbd>) to prepend Miniforge to your <code>PATH</code> (this makes the Miniforge distribution the default Python).</li>
-            </ul>
-          </li>
-          <li>Then:
-            <ul>
-              <li><strong>EITHER</strong>:
-                <ul>
-                  <li>Right click the following link and click "Save link as...": <a href="https://raw.githubusercontent.com/carpentries/workshop-template/refs/heads/gh-pages/data/carpentries_environment.yml">Carpentries environment file</a></li>
-                  <li>Save the file to your <code>Downloads</code> folder.</li>
-                  <li>Make sure that the filename is <code>carpentries_environment.yml</code> and the "Save as type" is set to <code>YML file (*.yml)</code></li>
-                </ul>
-              </li>
-              <li><strong>OR </strong>:
-                <ul>
-                  <li>Open your terminal</li>
-                  <li><code>cd ~/Downloads</code></li>
-                  <li><code>curl -L -O https://raw.githubusercontent.com/carpentries/workshop-template/refs/heads/gh-pages/data/carpentries_environment.yml</code></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-	        <li>In the terminal, run: <code>conda env create -f ~/Downloads/carpentries_environment.yml</code></li>
-          <li>Close the terminal window.</li>
-        </ol>
-      </article>
-    </div>
-  </div>
-  </div>
-</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Your Computer</th>
+        <th>What to Do</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Windows 11</strong> (most laptops)</td>
+        <td>Follow this guide as written. Run Windows Update first.</td>
+      </tr>
+      <tr>
+        <td><strong>Windows 10</strong></td>
+        <td>The install still works, but Anaconda stopped releasing new packages for Windows 10 on June 30, 2026. Upgrade to Windows 11 if you can.</td>
+      </tr>
+      <tr>
+        <td><strong>Windows on ARM</strong> (Snapdragon / "Copilot+" laptops)</td>
+        <td>Anaconda does not support these. Contact your instructor before installing.</td>
+      </tr>
+      <tr>
+        <td><strong>Mac with Apple chip</strong> (M1, M2, M3, M4…)</td>
+        <td>Follow this guide as written. Needs macOS 12.1 or newer.</td>
+      </tr>
+      <tr>
+        <td><strong>Mac with Intel chip</strong></td>
+        <td>The newest installer does not support Intel Macs. See the Intel Mac note in Step 1.</td>
+      </tr>
+      <tr>
+        <td><strong>Linux (64-bit)</strong></td>
+        <td>Follow the Linux steps.</td>
+      </tr>
+      <tr>
+        <td><strong>Chromebook or iPad</strong></td>
+        <td>Anaconda cannot be installed. Contact your instructor.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <blockquote class="callout">
+    <p><strong>Not sure which Mac you have?</strong><br>
+    Click the <strong>Apple menu &gt; About This Mac</strong>. If it says <code>Chip: Apple M…</code>, you have an Apple chip. If it says <code>Processor: Intel</code>, you have an Intel Mac.</p>
+  </blockquote>
+
+  <blockquote class="callout">
+    <p><strong>Already have Anaconda installed?</strong><br>
+    You can keep it. Skip to <strong>Step 3</strong> to check that it works.</p>
+  </blockquote>
+
+  <hr>
+
+  <h3>Step 1: Download Anaconda</h3>
+  <ol>
+    <li>Go to <a href="https://www.anaconda.com/download" target="_blank" rel="noopener">anaconda.com/download</a>.</li>
+    <li>The page asks for your email. You can skip this: click the <strong>Skip registration</strong> (or <strong>Skip to download</strong>) link under the button.</li>
+    <li>Under <strong>Anaconda Distribution</strong> (not Miniconda), download the installer for your computer:
+      <ul>
+        <li><strong>Windows:</strong> <code>64-Bit Graphical Installer</code> (a <code>.exe</code> file)</li>
+        <li><strong>Apple-chip Mac:</strong> <code>Apple Silicon Graphical Installer</code> (a <code>.pkg</code> file)</li>
+        <li><strong>Linux:</strong> <code>64-Bit (x86) Installer</code> (a <code>.sh</code> file)</li>
+      </ul>
+    </li>
+    <li>Wait for the download to finish. The file is large and lands in your Downloads folder.<br>
+    <em>The current version is <code>2026.07-1</code>, so the file name looks like <code>Anaconda3-2026.07-1-Windows-x86_64.exe</code>.</em></li>
+  </ol>
+
+  <blockquote class="callout">
+    <p><strong>Intel Mac only:</strong><br>
+    Go to the Anaconda installer archive and download the newest file whose name ends in <code>MacOSX-x86_64.pkg</code>. Anaconda stopped building new Intel Mac packages in August 2025.</p>
+  </blockquote>
+
+  <hr>
+
+  <h3>Step 2: Install Anaconda</h3>
+  <p>Follow the steps for your system only. Installing takes 5–15 minutes.</p>
+
+  <h4>Windows</h4>
+  <ol>
+    <li>Open your <strong>Downloads</strong> folder and double-click the <code>.exe</code> file.</li>
+    <li>Click <strong>Next</strong>, then <strong>I Agree</strong>.</li>
+    <li>Choose <strong>Just Me (recommended)</strong> and click <strong>Next</strong>.</li>
+    <li>Check the install folder. Keep the default unless your Windows user name contains a space or non-English letters (for example <code>C:\Users\Maria Lopez</code>). In that case, change it to <code>C:\anaconda</code>.</li>
+    <li>On the <strong>Advanced Options</strong> screen, keep the defaults. Do <strong>not</strong> tick <em>"Add Anaconda3 to my PATH"</em>.</li>
+    <li>Click <strong>Install</strong>, wait, then click <strong>Next</strong> and <strong>Finish</strong>.</li>
+  </ol>
+
+  <h4>Mac</h4>
+  <ol>
+    <li>Open your <strong>Downloads</strong> folder and double-click the <code>.pkg</code> file.</li>
+    <li>Click <strong>Continue</strong> through the screens, then <strong>Agree</strong>.</li>
+    <li>If asked where to install, choose <strong>Install for me only</strong>.</li>
+    <li>Click <strong>Install</strong> and enter your Mac password if asked.</li>
+    <li>Wait for <em>"The installation was completed successfully"</em>, then click <strong>Close</strong>.</li>
+  </ol>
+
+  <h4>Linux</h4>
+  <ol>
+    <li>Open a terminal and run the installer (press <code>Tab</code> to complete the file name):
+      <pre><code>bash ~/Downloads/Anaconda3-2026.07-1-Linux-x86_64.sh</code></pre>
+    </li>
+    <li>Press <code>Enter</code> to scroll the license, then type <code>yes</code>.</li>
+    <li>Press <code>Enter</code> to accept the default install location.</li>
+    <li>When asked whether to initialize conda, type <code>yes</code>.</li>
+    <li>Close the terminal and open a new one.</li>
+  </ol>
+
+  <hr>
+
+  <h3>Step 3: Check That Anaconda Works</h3>
+  <p>You will type commands into a text window. We call it the <strong>prompt</strong> in the rest of this guide.</p>
+  <ol>
+    <li><strong>Open the prompt:</strong>
+      <ul>
+        <li><strong>Windows:</strong> Click <strong>Start</strong>, type <strong>Anaconda Prompt</strong>, and open it. Do not use the normal Command Prompt or PowerShell.</li>
+        <li><strong>Mac:</strong> Press <code>Cmd + Space</code>, type <strong>Terminal</strong>, and press <code>Enter</code>.</li>
+        <li><strong>Linux:</strong> Open your terminal.</li>
+      </ul>
+    </li>
+    <li>Look at the start of the line. You should see <code>(base)</code>.</li>
+    <li>Type this and press <code>Enter</code>:
+      <pre><code>conda --version</code></pre>
+      If you see something like <code>conda 25.11.1</code>, Anaconda works. If you see <em>"not recognized"</em> or <em>"command not found"</em>, see Troubleshooting.
+    </li>
+  </ol>
+
+  <hr>
+
+  <h3>Step 4: Create the Class Environment</h3>
+  <p>An environment is a separate box of Python tools set up exactly for our class. You only do this step once.</p>
+  <ol>
+    <li>Download <code>Carpentries.yml</code> from the link your instructor shared and save it in your <strong>Downloads</strong> folder.
+      <ul>
+        <li>If the file opens as text in your browser, go back, right-click the link, and choose <strong>Save link as</strong>.</li>
+        <li>On Windows, make sure the name ends in <code>.yml</code>, not <code>.yml.txt</code>.</li>
+      </ul>
+    </li>
+    <li>In the prompt, go to your Downloads folder:
+      <pre><code>cd Downloads</code></pre>
+      <em>(On Mac or Linux you can also type <code>cd ~/Downloads</code>.)</em>
+    </li>
+    <li>Create the environment. Type the file name exactly, with a capital C:
+      <pre><code>conda env create -f Carpentries.yml</code></pre>
+    </li>
+    <li>You may be asked: <em>Do you accept the Terms of Service (ToS)?</em> Type <code>a</code> and press <code>Enter</code>. It may ask more than once, once per channel.</li>
+    <li>Wait. This can take 5–20 minutes. It is finished when you see <em>"To activate this environment, use conda activate carpentries"</em>.</li>
+    <li>Switch into the new environment:
+      <pre><code>conda activate carpentries</code></pre>
+      The start of the line should change from <code>(base)</code> to <code>(carpentries)</code>.
+    </li>
+  </ol>
+
+  <hr>
+
+  <h3>Step 5: Open JupyterLab and Run a Test</h3>
+  <ol>
+    <li>With <code>(carpentries)</code> showing in the prompt, type:
+      <pre><code>jupyter lab</code></pre>
+    </li>
+    <li>JupyterLab opens in your web browser after a few seconds. If it does not, copy the link starting with <code>http://localhost:8888/lab?token=</code> from the prompt into your browser.</li>
+    <li>Keep the prompt window open. Closing it stops JupyterLab.</li>
+    <li>In JupyterLab, click <strong>File &gt; New &gt; Notebook</strong>. If asked to pick a kernel, choose <strong>Python 3</strong>.</li>
+    <li>Click in the grey box, type the line below, and press <code>Shift + Enter</code>:
+      <pre><code>print("Hello, Python!")</code></pre>
+      If <code>Hello, Python!</code> appears under the box, you are ready for class.
+    </li>
+    <li>To finish, click <strong>File &gt; Shut Down</strong> in JupyterLab, then close the prompt window.</li>
+  </ol>
+
+  <blockquote class="callout">
+    <p><strong>Prefer clicking to typing?</strong><br>
+    Open <strong>Anaconda Navigator</strong> from your Start menu or Applications folder. On the Home tab, change <strong>Applications on</strong> from <code>base</code> to <code>carpentries</code>, then click <strong>Launch</strong> under JupyterLab. <em>(Navigator can be slow to start.)</em></p>
+  </blockquote>
+
+  <hr>
+
+  <h3>Every Class: Quick Start</h3>
+  <p>Steps 1–4 are one-time setup. At the start of every class, do only this:</p>
+  <ol>
+    <li>Open the prompt (<strong>Anaconda Prompt</strong> on Windows, <strong>Terminal</strong> on Mac).</li>
+    <li>Type these two commands, pressing <code>Enter</code> after each:
+      <pre><code>conda activate carpentries
+jupyter lab</code></pre>
+    </li>
+    <li>Leave the prompt window open while you work.</li>
+  </ol>
+  <p><em>JupyterLab starts in your home folder. Use the file browser on the left to make a folder called <code>python-class</code> and keep all your notebooks there.</em></p>
+
+  <hr>
+
+  <h3>Troubleshooting</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>What You See</th>
+        <th>What to Do</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>'conda' is not recognized</code> (Windows)</td>
+        <td>You opened the normal Command Prompt or PowerShell. Open <strong>Anaconda Prompt</strong> from the Start menu instead.</td>
+      </tr>
+      <tr>
+        <td><code>conda: command not found</code> (Mac)</td>
+        <td>Close Terminal and open a new one. Still failing? Run <code>/opt/anaconda3/bin/conda init zsh</code> (or <code>~/anaconda3/bin/conda init zsh</code>), then reopen Terminal.</td>
+      </tr>
+      <tr>
+        <td>No <code>(base)</code> at the start of the line</td>
+        <td>Close the prompt and open a new one. On Windows, check you opened Anaconda Prompt.</td>
+      </tr>
+      <tr>
+        <td><code>EnvironmentFileNotFound</code> or <em>"file not found"</em></td>
+        <td>You are not in the folder with the file, or it is named <code>Carpentries.yml.txt</code>. Type <code>dir</code> (Windows) or <code>ls</code> (Mac/Linux) to list the files, and rename it if needed.</td>
+      </tr>
+      <tr>
+        <td><code>CondaToSNonInteractiveError</code>: Terms of Service have not been accepted</td>
+        <td>Run the ToS acceptance commands in the code box below, then try Step 4 again.</td>
+      </tr>
+      <tr>
+        <td><code>prefix already exists</code></td>
+        <td>The environment is already there. Skip to Step 5. To start fresh, run <code>conda env remove -n carpentries</code>, then repeat Step 4.</td>
+      </tr>
+      <tr>
+        <td>Stuck on <em>"Solving environment"</em></td>
+        <td>Wait up to 30 minutes on a good connection. If it is still stuck, press <code>Ctrl + C</code> and contact your instructor.</td>
+      </tr>
+      <tr>
+        <td><code>ModuleNotFoundError</code> in a notebook</td>
+        <td>You started JupyterLab from <code>(base)</code>. Close it, run <code>conda activate carpentries</code>, then <code>jupyter lab</code> again.</td>
+      </tr>
+      <tr>
+        <td>Browser did not open</td>
+        <td>Copy the <code>http://localhost:8888/lab?token=…</code> link from the prompt into your browser.</td>
+      </tr>
+      <tr>
+        <td>Windows install errors mentioning the path</td>
+        <td>Your user name has a space or special characters. Reinstall and choose <code>C:\anaconda</code> as the folder.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Accept Terms of Service Manually</h4>
+  <p>Run these commands if prompted for ToS issues (Windows users also run the third line):</p>
+  <pre><code>conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/msys2</code></pre>
+
+  <p><em>Still stuck? Send your instructor a screenshot of the whole prompt window, and say whether you use Windows, Mac, or Linux.</em></p>
+
+  <hr>
+
+  <h4>Sources</h4>
+  <ul>
+    <li>Anaconda system requirements</li>
+    <li>Anaconda installation FAQ</li>
+    <li>Installing on macOS, incl. Intel Mac note</li>
+    <li>Anaconda 2026.x release notes</li>
+    <li><code>conda Terms of Service</code> plugin</li>
+  </ul>
+</section>
